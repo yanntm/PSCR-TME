@@ -4,6 +4,9 @@
 #include <iostream> // For operator<< and traces
 #include "strutil.h" // Assumes strutil.h is in namespace pr
 
+// predeclare test class for friend access
+class TestString;
+
 namespace pr {
 
 class String {
@@ -31,7 +34,7 @@ public:
 //    friend bool operator==(const String& a, const String& b); // Symmetric equality
 //    friend String operator+(const String& a, const String& b); // Symmetric concat
 
-    friend class TestString; // For private access in tests
+    friend class ::TestString; // For private access in tests
 };
 
 } // namespace pr
