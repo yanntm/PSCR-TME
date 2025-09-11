@@ -46,7 +46,7 @@ Afficher le nombre d'occurrences des mots "war", "peace" et "toto".
 Réponse :
 
 
-5) Trier ce vecteur de paires par nombre d'occurrences décroissantes à l'aide de \texttt{std::sort} puis afficher les dix mots les plus fréquents. 
+5) Trier ce vecteur de paires par nombre d'occurrences décroissantes à l'aide de `std::sort` puis afficher les dix mots les plus fréquents. 
 
 `std::sort` prend les itérateurs de début et fin de la zone à trier, et un prédicat binaire. Voir l'exemple suivant.
 
@@ -76,7 +76,7 @@ int main_sort () {
 Réponse :
 
 
-6) Quelle est la complexité de code en temps et mémoire ? Donnez une trace avec temps d'exécution en mode release.
+6) Quelle est la complexité de ce code en temps et mémoire ? Donnez une trace avec temps d'exécution en mode release.
 
 
 Réponse :
