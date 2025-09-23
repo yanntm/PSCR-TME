@@ -1,0 +1,79 @@
+{
+    "tasks": [
+        {
+            "label": "CMake: configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "group": "build",
+            "detail": "Configure the CMake project"
+        },
+        {
+            "label": "CMake: build",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--config",
+                "Debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Build the CMake project in Debug mode",
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "CMake: build Release",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--config",
+                "Release"
+            ],
+            "group": "build",
+            "detail": "Build the CMake project in Release mode",
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Valgrind: Run Target (Debug)",
+            "type": "shell",
+            "command": "valgrind",
+            "args": [
+                "--leak-check=full",
+                "--show-leak-kinds=all",
+                "--track-origins=yes",
+                "--error-exitcode=1",
+                "${command:cmake.launchTargetPath}"
+                // Add "${input:programArgs}" if you want to prompt for args dynamically
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],  // Valgrind doesn't integrate perfectly with matchers; use [] for raw output
+            "detail": "Run Valgrind on the Debug build to check for memory issues",
+            "dependsOrder": "sequence",  // Run after build
+            "dependsOn": "CMake: build"
+        }
+    ],
+    "version": "2.0.0"
+}
