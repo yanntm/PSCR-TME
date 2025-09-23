@@ -21,6 +21,7 @@ int main(int argc, char **argv)
         // Optional third argument is num_threads (default 4).
         string filename = "../WarAndPeace.txt";
         string mode = "freqstd";
+        int num_threads=4;
         if (argc > 1)
                 filename = argv[1];
         if (argc > 2)
@@ -31,7 +32,7 @@ int main(int argc, char **argv)
         if (!check.is_open())
         {
                 cerr << "Could not open '" << filename << "'. Please provide a readable text file as the first argument." << endl;
-                cerr << "Usage: " << (argc > 0 ? argv[0] : "TME3") << " [path/to/textfile] [mode]" << endl;
+                cerr << "Usage: " << (argc > 0 ? argv[0] : "TME3") << " [path/to/textfile] [mode] [num threads]" << endl;
                 return 2;
         }
         check.seekg(0, std::ios::end);
@@ -98,3 +99,4 @@ int main(int argc, char **argv)
 
         return 0;
 }
+
