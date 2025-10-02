@@ -14,9 +14,8 @@
 // and avoid the complexity of duplicate merging
 class alignas(std::hardware_destructive_interference_size) ListLF {
 
-  // alignas at declaration to avoid "false sharing" because our lists (sizeof
-  // is only one atomic pointer head_) are packed closely in the "buckets" vector of
-  // hash map and would otherwise share cache lines
+  // alignas at declaration to avoid "false sharing" because our lists (sizeof is only one atomic pointer head_) are
+  // packed closely in the "buckets" vector of hash map and would otherwise share cache lines
 
 private:
   // Node structure for linked list
@@ -27,8 +26,7 @@ private:
     std::atomic<int> count;
     std::atomic<Node *> next;
 
-    Node(const std::string &k, int initial_count = 1)
-        : key(k), count(initial_count), next(nullptr) {}
+    Node(const std::string &k, int initial_count = 1) : key(k), count(initial_count), next(nullptr) {}
   };
   // Head pointer of the list, atomic for lock-free updates
   std::atomic<Node *> head_;
@@ -50,12 +48,10 @@ public:
   // This version uses tail insertion to maintain order and avoid duplicates
   void incrementCount(const std::string &word, int delta = 1) {
     Node *new_node = nullptr; // Allocate outside loop for reuse optimization
-    // position is initially set to &head, then as we iterate to &next in
-    // successive nodes this points to the tentative node->next/head_ we might
-    // overwrite if we insert, can only progress
+    // position is initially set to &head, then as we iterate to &next in successive nodes
+    // it points to the tentative node->next/head_ we might overwrite if we insert, can only progress
     std::atomic<Node *> *position = &head_;
-    // current : a node pointer equal to *position, order_acquire so any
-    // previous write is visible
+    // current : a node pointer equal to *position, order_acquire so any previous write is visible
     Node *current = position->load(std::memory_order_acquire);
     do {
       // STEP 1: TRAVERSAL - Walk through the list from current position
@@ -81,14 +77,11 @@ public:
       }
       // CRITICAL ATOMIC OPERATION: compare_exchange_weak
       // This is the "test-and-set" that makes this lock-free
-      // - If *position is still nullptr as expected, CAS succeeds and sets
-      // *position = new_node, we successfully appended
-      // - Else (we were overtaken), CAS fails and updates current with the new
-      // tail 
+      // - If *position is still nullptr as expected, CAS succeeds and sets *position = new_node, we
+      // successfully appended
+      // - Else (we were overtaken), CAS fails and updates current with the new tail
       // order_acq_rel ensures this operation has proper memory ordering
-    } while (!position->compare_exchange_weak(current, new_node,
-                                              std::memory_order_acq_rel,
-                                              std::memory_order_acquire));
+    } while (!position->compare_exchange_weak(current, new_node, std::memory_order_acq_rel, std::memory_order_acquire));
     // SUCCESS: Our node is now appended to the list, we are done
     // FAILURE: Another thread modified *position, continue from new loaded current
   }
