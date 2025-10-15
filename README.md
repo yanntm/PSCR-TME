@@ -2,7 +2,7 @@
 
 Provided lab files for PSCR MU4IN400 course.
 
-Ce repo contient les fichiers utiles pour le cours MU4IN400 : Programmation Système Concurrente et Répartie
+Ce repository contient les fichiers utiles pour le cours MU4IN400 : Programmation Système Concurrente et Répartie
 
 Cette UE est inscrite dans le Master 1 d'Informatique de Sorbonne Université.
 
