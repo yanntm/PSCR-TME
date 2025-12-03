@@ -158,7 +158,9 @@ int pipe_unlink(const char *name) {
     char shm_name[256];
     snprintf(shm_name, sizeof(shm_name), "/%s", name);
     
-    // Unlink shared memory (this also destroys the embedded semaphores)
+    // one last shm_open + mmap : we need to sem_destroy
+
+    // Unlink shared memory
     
     return 0;
 }
