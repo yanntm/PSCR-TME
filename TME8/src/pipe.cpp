@@ -41,7 +41,6 @@ int pipe_create(const char *name) {
     // Set size of shared memory
     // Map the shared memory 
     // Initialize the PipeShm structure
-    // memset(shm, 0, sizeof(PipeShm));
 
     // Including semaphores
 
@@ -61,7 +60,8 @@ Pipe * pipe_open(const char *name, int oflags) {
     // Increment nbReaders or nbWriters
     
     // Create and return Pipe handle
-    Pipe *handle = nullptr; // new Pipe(...);
+    Pipe *handle = nullptr; // new Pipe();
+    // handle->shm = ...
     return handle;
 }
 
