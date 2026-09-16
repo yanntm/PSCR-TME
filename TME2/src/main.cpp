@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include "FreqMap.h"
 
 // helper to clean a token (keep original comments near the logic)
 static std::string cleanWord(const std::string& raw) {
@@ -31,7 +32,7 @@ int main(int argc, char** argv) {
 	ifstream input(filename);
 	if (!input.is_open()) {
 		cerr << "Could not open '" << filename << "'. Please provide a readable text file as the first argument." << endl;
-		cerr << "Usage: " << (argc>0?argv[0]:"TME2") << " [path/to/textfile]" << endl;
+		cerr << "Usage: " << (argc>0?argv[0]:"countword") << " [path/to/textfile]" << endl;
 		return 2;
 	}
 	cout << "Parsing " << filename << " (mode=" << mode << ")" << endl;
@@ -48,6 +49,8 @@ int main(int argc, char** argv) {
 		while (input >> word) {
 			// élimine la ponctuation et les caractères spéciaux
 			word = cleanWord(word);
+			// un token sans aucune lettre (e.g. "--" ou "1812") devient vide : on l'ignore
+			if (word.empty()) continue;
 
 			// word est maintenant "tout propre"
 			if (nombre_lu % 100 == 0)
@@ -67,6 +70,7 @@ int main(int argc, char** argv) {
 		while (input >> word) {
 			// élimine la ponctuation et les caractères spéciaux
 			word = cleanWord(word);
+			if (word.empty()) continue;
 
 			// add to seen if it is new
 			// TODO

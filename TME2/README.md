@@ -1,6 +1,7 @@
-# TME2
+# TME2 : countword
 
-This document explains how to build and run the `TME2` program.
+This document explains how to build and run the `countword` program.
+Sources are in `src/` : `main.cpp` (the program) and `FreqMap.h` (a hash table skeleton, used from part 3 of the TME).
 
 The build system uses CMake, which generates native build files (like Makefiles on Linux) from a `CMakeLists.txt` configuration file.
 
@@ -29,7 +30,7 @@ It is recommended to use a separate directory for each build configuration to av
     cmake ..
     ```
 
-3.  **Run Make.** This compiles the `TME2` executable.
+3.  **Run Make.** This compiles the `countword` executable.
     ```
     make
     ```
@@ -47,20 +48,24 @@ It is recommended to use a separate directory for each build configuration to av
     cmake -DCMAKE_BUILD_TYPE=Release ..
     ```
 
-3.  **Run Make.** This compiles the optimized `TME2` executable.
+3.  **Run Make.** This compiles the optimized `countword` executable.
     ```
     make
     ```
 
 ## How to Run
 
-The executable `TME2` will be created inside the build directory you chose (`build-debug` or `build-release`).
+The executable `countword` will be created inside the build directory you chose (`build-debug` or `build-release`).
 
 To run it from within the build directory:
 ```
-./TME2 [path/to/textfile] [mode]
+./countword [path/to/textfile] [mode]
 ```
 
 If no filename is given the program will try to read `../WarAndPeace.txt` (one level above the build directory).
 
 If no mode is provided the program will use mode "count".
+
+Modes are added along the TME : `count` (provided), `unique`, `freq`, `freqstd`, `freqhash`. The `freqhash` mode accepts an optional third argument, the number of buckets.
+
+Answers and execution traces go into `answers.md`, see the TME sheet.
