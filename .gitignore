@@ -9,3 +9,6 @@ compile_commands.json
 *.so
 *.exe
 *.freq
+
+# Configuration locale de l'éditeur, propre à chaque poste.
+.vscode/

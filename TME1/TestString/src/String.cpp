@@ -3,8 +3,8 @@
 namespace pr
 {
 
-// TODO: Implement constructor e.g. using initialization list
-String::String (const char *s)
+// TODO: copier s dans data (liste d'initialisation)
+String::String (const char *s) : data(nullptr)
 {
   std::cout << "String constructor called for: " << s << std::endl;
 }

@@ -1,64 +1,31 @@
-# TME1 - TestString Exercise
+# TME1 : TestString (bonus)
 
-This exercise is designed to help you understand the fundamentals of memory management in C++ by building your own `String` class.
+Implémentez la classe `pr::String` et ses fonctions utilitaires dans `src/String.cpp` et `src/strutil.cpp`, en décommentant progressivement les tests de `src/main.cpp` jusqu'à ce que tous passent sans fuite mémoire.
 
-## Goal
+## Compiler
 
-The primary goal is to implement the `pr::String` class and its helper functions in `src/String.cpp` and `src/strutil.cpp`. You will do this by progressively uncommenting the test functions in `src/main.cpp` and implementing the required functionality until all tests pass without memory leaks.
+Depuis ce dossier, avec un compilateur C++20 et CMake :
 
-## Build Instructions
-
-To build the project, you can use the provided CMake configuration. From the root of the `TestString` directory, run the following commands:
-
-```bash
-mkdir build
-cd build
-cmake ..
-make
+```sh
+cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug
+cmake --build build-debug
+./build-debug/TestString
 ```
 
-Alternatively, if you are using VSCode with the CMake Tools extension, you can run the build tasks directly from the IDE.
+Après chaque modification du code, relancez `cmake --build build-debug`. Dans VS Code avec l'extension CMake Tools, ouvrez ce dossier et acceptez la configuration proposée ; le binaire est alors dans `build/`.
 
 ## Progression
 
-Follow this progression to complete the exercise. After implementing each piece of functionality, uncomment the corresponding test function in `main.cpp` to verify your implementation.
+Décommentez un test dans `main.cpp` (et l'appel correspondant dans `runAllTests`), implémentez ce qu'il exige, vérifiez, passez au suivant.
 
-### 1. C-string Utilities (`strutil.cpp`)
+1. `strutil.cpp` : `length`, `newcopy`, `compare`.
+2. `String.cpp` : constructeur et destructeur (avec traces sur `std::cout`), `operator<<`, constructeur par copie, `operator=` par copie, `operator==`, `operator<`, `newcat` et `operator+`.
+3. Déplacement : `String(String&&)` et `operator=(String&&)`. Observez les traces : quels appels deviennent des déplacements ?
 
-Start by implementing the basic C-string utility functions in `src/strutil.cpp`.
+## Valgrind
 
-- **`length`**: Implement the `length` function to calculate the length of a C-string.
-- **`newcopy`**: Implement `newcopy` to create a new copy of a C-string.
-- **`compare`**: Implement `compare` to compare two C-strings.
+À chaque étape, sur le binaire Debug :
 
-### 2. `String` Class Implementation (`String.cpp`)
-
-Now, start implementing the `pr::String` class.
-
-- **Constructor & Destructor**: Implement the constructor `String(const char* s)` and the destructor `~String()`. Remember to trace their execution by printing to `std::cout` as shown in the examples.
-- **Copy Constructor**: Implement the copy constructor `String(const String& other)`.
-- **Copy Assignment Operator**: Implement the copy assignment operator `operator=(const String& other)`.
-- **`operator==` (friend)**: Implement the equality operator `operator==` as a friend function.
-- **`operator<` (member)**: Implement the less-than operator `operator<` as a member function.
-- **`operator+`**: Implement the concatenation operator `operator+`.
-
-### 3. Advanced Features (Move Semantics)
-
-Once the basic functionality is working, you can move on to implementing move semantics for better performance.
-
-- **Move Constructor**: Implement the move constructor `String(String&& other)`.
-- **Move Assignment Operator**: Implement the move assignment operator `operator=(String&& other)`.
-
-## Running Tests with Valgrind
-
-It is crucial to check for memory leaks throughout this exercise. You can use Valgrind to run the tests and detect memory issues.
-
-If you are using VSCode, you can run the "Valgrind: Run Target (Debug)" task from the command palette.
-
-Alternatively, you can run Valgrind from the command line:
-
-```bash
-valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./build/TestString
+```sh
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./build-debug/TestString
 ```
-
-Good luck!

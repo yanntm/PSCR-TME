@@ -1,62 +1,32 @@
-# TME1
+# TME1 : TestListe
 
-This document explains how to build and run the `TestList` program.
+Programme `TestList` à corriger : le code fourni contient des fautes de compilation, de link, d'exécution et de gestion mémoire (voir l'énoncé).
 
-The build system uses CMake, which generates native build files (like Makefiles on Linux) from a `CMakeLists.txt` configuration file.
+## Compiler
 
-## Build Configurations
+Depuis ce dossier, avec un compilateur C++20 et CMake :
 
-This project is set up with two main build configurations:
+```sh
+cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug
+cmake --build build-debug
+./build-debug/TestList
+```
 
--   **Debug**: This is the default configuration. It compiles the code with no optimization (`-O0`) and includes debugging symbols (`-g`). This version is larger and slower, but it allows you to use a debugger (like `gdb`) to step through the code and inspect variables. It also enables extensive warnings (`-Wall -Wextra -pedantic`) to help catch potential errors.
+Sur Linux, la première commande génère une fois pour toutes un Makefile classique dans `build-debug` ; la seconde l'invoque (équivalent portable de `make -C build-debug`). Après chaque modification du code, relancez `cmake --build build-debug`.
 
--   **Release**: This configuration is optimized for performance. It uses a high level of optimization (`-O3`) and removes debugging symbols. The resulting executable is smaller and faster. This is the version you would typically distribute.
+Debug (`-O0 -g -Wall -Wextra -pedantic`) : pas d'optimisation, symboles pour le debugger, warnings. Pour un binaire optimisé (`-O3`), configurez une seconde fois dans un autre dossier :
 
-## How to Build
+```sh
+cmake -S . -B build-release -DCMAKE_BUILD_TYPE=Release
+cmake --build build-release
+```
 
-It is recommended to use a separate directory for each build configuration to avoid conflicts.
+Dans VS Code avec l'extension CMake Tools, ouvrez ce dossier et acceptez la configuration proposée ; la barre d'état donne le choix Debug/Release, Build, Run et Debug. Le binaire est alors dans `build/`.
 
-### Debug Build (Default)
+## Valgrind
 
-1.  **Create and enter a build directory:**
-    ```bash
-    mkdir build-debug
-    cd build-debug
-    ```
+Sur le binaire Debug :
 
-2.  **Run CMake.** It will default to the Debug configuration.
-    ```bash
-    cmake ..
-    ```
-
-3.  **Run Make.** This compiles the `TestList` executable.
-    ```bash
-    make
-    ```
-
-### Release Build
-
-1.  **Create and enter a build directory:**
-    ```bash
-    mkdir build-release
-    cd build-release
-    ```
-
-2.  **Run CMake, specifying the Release build type:**
-    ```bash
-    cmake -DCMAKE_BUILD_TYPE=Release ..
-    ```
-
-3.  **Run Make.** This compiles the optimized `TestList` executable.
-    ```bash
-    make
-    ```
-
-## How to Run
-
-The executable `TestList` will be created inside the build directory you chose (`build-debug` or `build-release`).
-
-To run it from within the build directory:
-```bash
-./TestList
+```sh
+valgrind --leak-check=full ./build-debug/TestList
 ```
