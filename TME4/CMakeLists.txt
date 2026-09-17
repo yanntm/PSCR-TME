@@ -17,12 +17,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Set compiler flags.
 set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra -pedantic -O0")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -DNDEBUG -flto")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -pedantic -DNDEBUG -flto")
 
 # Find Qt6
 find_package(Qt6 REQUIRED COMPONENTS Core Gui)
 
-# Add the executable (only main.cpp exists for now).
+# Programme et utilitaires fournis.
 add_executable(TME4
     src/main.cpp
     src/Tasks.cpp

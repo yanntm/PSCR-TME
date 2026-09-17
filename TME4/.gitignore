@@ -1,3 +1,4 @@
-/build/
-input_images/
-output_images/
+/build*/
+/results/
+/input_images/
+/output*/
