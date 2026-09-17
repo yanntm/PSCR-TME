@@ -4,12 +4,16 @@ Un titre par question. Sous chaque titre : la réponse si la question en demande
 de votre code, collée telle quelle entre triples backquotes. On peut couper le milieu d'une trace longue, on garde
 les dernières lignes, avec le temps d'exécution.
 
+## Machine de mesure
+
+Collez ici le bloc produit par `./machine-info.sh`, puis complétez le contexte de mesure.
+
 ## Question 1
 
 Exemple de trace : à remplacer par la vôtre.
 
 ```
-$ build-debug/countword ../WarAndPeace.txt count
+$ ./build-debug/countword WarAndPeace.txt count
 565500: to
 Finished parsing.
 Found a total of 565527 words.

@@ -19,7 +19,7 @@ public:
     using Table  = std::vector<Bucket>;
 
     // Construct with a number of buckets (must be >= 1)
-    HashMap(std::size_t nbuckets = 4096) : buckets_(nbuckets) {}
+    HashMap(std::size_t nbuckets = 20000) : buckets_(nbuckets) {}
 
     // Increment frequency for the given word
     void incrementFrequency(const K& key, V delta = 1) {

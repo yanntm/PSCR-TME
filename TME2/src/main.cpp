@@ -36,15 +36,15 @@ int main(int argc, char** argv) {
 		return 2;
 	}
 	cout << "Parsing " << filename << " (mode=" << mode << ")" << endl;
-	
+
 	auto start = steady_clock::now();
-	
+
 	// prochain mot lu
 	string word;
 
 	if (mode == "count") {
 		size_t nombre_lu = 0;
-	
+
 		// default counting mode: count total words
 		while (input >> word) {
 			// élimine la ponctuation et les caractères spéciaux

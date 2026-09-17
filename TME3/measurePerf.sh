@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Script to measure performance of different modes in TME3
+# Script to measure performance of different modes in countword
 #
 # Usage: ./measurePerf.sh [FILE] [EXE]
 #   - FILE: Input text file to parse (default: WarAndPeace.txt)
-#   - EXE: Path to the TME3 executable (default: ./build-release/TME3)
+#   - EXE: Path to the countword executable (default: ./build-release/countword)
 #
 # Invocation example:
-#   ./measurePerf.sh WarAndPeace.txt ./build/TME3 > perf.txt
+#   ./measurePerf.sh WarAndPeace.txt ./build/countword > perf.txt
 #
 # Description:
-#   This script runs the TME3 word frequency counter in various modes and thread counts.
+#   This script runs the countword word frequency counter in various modes and thread counts.
 #   It tests single-threaded modes (freqstd, freqstdf, freq) once each.
 #   For multi-threaded modes, it loops over thread counts 1, 2, 4, 6, 8, 16, 32, 64.
 #   Output includes timing info from 'time' command for single modes, and program output for multi.
@@ -23,11 +23,11 @@
 # Adaptation:
 #   - Modify SINGLE_MODES or MULTI_MODES arrays to add/remove modes.
 #   - Change THREADS array for different thread counts.
-#   - Adjust EXE path if built in a different location (e.g., ./build/TME3).
+#   - Adjust EXE path if built in a different location (e.g., ./build/countword).
 #   - For release builds, ensure EXE points to optimized binary.
 
 FILE="${1:-WarAndPeace.txt}"
-EXE="${2:-./build-release/TME3}"
+EXE="${2:-./build-release/countword}"
 
 # Modes that do not use num_threads
 SINGLE_MODES=("freqstd" "freqstdf" "freq")

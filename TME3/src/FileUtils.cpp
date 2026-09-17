@@ -66,8 +66,8 @@ std::vector<std::streamoff> pr::partition(const std::string& file, std::streamof
 }
 
 void pr::printResults(size_t total_words, size_t unique_words, std::vector<std::pair<std::string, int>> freq_pairs, const std::string& filename) {
-    std::sort(freq_pairs.begin(), freq_pairs.end(), [](const auto &a, const auto &b) { 
-        return a.second > b.second || (a.second == b.second && a.first < b.first); 
+    std::sort(freq_pairs.begin(), freq_pairs.end(), [](const auto &a, const auto &b) {
+        return a.second > b.second || (a.second == b.second && a.first < b.first);
     });
     std::ofstream out(filename);
     if (!out) {
@@ -120,7 +120,7 @@ void pr::processRange(const std::string & file, std::streamoff start, std::strea
     }
     in.seekg(start);
     // Max block size (signed for stream compat).
-    // a bit arbitrary, could be tuned. 
+    // a bit arbitrary, could be tuned.
     // Larger sizes use more memory but reduce system I/O calls potentially.
     const std::streamsize BLOCK_SIZE = 2048;
     // Reusable buffer (avoids per-loop allocs).
