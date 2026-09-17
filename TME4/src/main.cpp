@@ -33,9 +33,9 @@ struct Options {
        << "', output folder '" << opts.outputFolder.string() 
        << "', mode '" << opts.mode 
        << "', nthreads " << opts.num_threads
-       << "', nbread " << opts.nbread
-       << "', nbresize " << opts.nbresize
-       << "', nbwrite " << opts.nbwrite
+       << ", nbread " << opts.nbread
+       << ", nbresize " << opts.nbresize
+       << ", nbwrite " << opts.nbwrite
        << ", queue_size " << opts.queue_size;
     return os;
   }
