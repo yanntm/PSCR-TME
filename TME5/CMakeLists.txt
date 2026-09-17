@@ -27,7 +27,3 @@ add_executable(TME5
 
 # Specify include directories.
 target_include_directories(TME5 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-# Link Qt libraries
-target_link_libraries(TME5)
-

@@ -1,0 +1,11 @@
+# Fichiers générés par la compilation et les mesures.
+build*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+*.o
+*.a
+*.so
+*.exe
+*.freq
