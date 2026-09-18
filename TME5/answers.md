@@ -1,72 +1,30 @@
-# TME5 Correction: Parallelization of a Ray Tracer
+# TME5 : réponses et traces
 
-## Baseline Sequential
+Un titre par question. Sous chaque titre : la réponse si la question en demande une, et la
+commande avec sa ligne `Total time`, collée telle quelle entre triples backquotes.
 
-### Question 1
-Extracted TME5.zip from Moodle, added to repo, committed and pushed.
+## Machine de mesure
 
-Configured project with CMake as previous TMEs. No dependencies, all handmade.
+Cœurs, fréquence, RAM, compilateur, OS, configuration (Release).
 
-### Question 2
+## Question 1
 
-Ran `build/TME5` and generated `spheres.bmp`.
+## Question 2
 
-Platform: 
+## Question 3
 
-Temps/baseline choisi :
+## Question 4
 
-## With Manual Threads
+## Question 5
 
-### Question 3
-Implemented `void renderThreadPerPixel(const Scene& scene, Image& img)` in Renderer.
+## Question 6
 
-mesures
+## Question 7
 
+## Question 8
 
-### Question 4
-Implemented `void renderThreadPerRow(const Scene& scene, Image& img)` in Renderer.
+## Question 9
 
-mesures
+## Question 10
 
-
-### Question 5
-Implemented `void renderThreadManual(const Scene& scene, Image& img, int nbthread)` in Renderer.
-
-mesures
-
-
-## With Thread Pool
-
-### Question 6
-Queue class: blocking by default, can switch to non-blocking.
-
-### Question 7
-Pool class: constructor with queue size, start, stop.
-Job abstract class with virtual run().
-
-### Question 8
-PixelJob: derives from Job, captures ?TODO?
-
-renderPoolPixel: 
-
-Mode "-m PoolPixel" with -n.
-
-mesures
-
-### Question 9
-LineJob: derives from Job, captures TODO
-
-renderPoolRow: 
-
-Mode "-m PoolRow -n nbthread".
-
-mesures
-
-### Question 10
-Best:
-
-## Bonus
-
-### Question 11
-
-pool supportant soumission de lambda.
+## Question 11 (bonus)

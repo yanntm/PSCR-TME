@@ -16,8 +16,8 @@ public:
         const Scene::screen_t& screen = scene.getScreenPoints();
 
         // pour chaque pixel, calculer sa couleur
-        for (int x = 0; x < scene.getWidth(); x++) {
-            for (int y = 0; y < scene.getHeight(); y++) {
+        for (int y = 0; y < scene.getHeight(); y++) {
+            for (int x = 0; x < scene.getWidth(); x++) {
                 // le point de l'ecran par lequel passe ce rayon
                 auto& screenPoint = screen[y][x];
                 // le rayon a inspecter

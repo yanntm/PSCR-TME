@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
   pr::Renderer renderer;
   if (opts.mode == "sequential") {
     renderer.render(scene, img);
+    // Décommentez chaque mode au fur et à mesure que vous l'implantez.
     /*
            } else if (opts.mode == "ThreadPerPixel") {
            renderer.renderThreadPerPixel(scene, img);

@@ -8,8 +8,12 @@
 
 namespace pr {
 
+// graine du tirage de la scene : deux executions donnent la meme image
+constexpr unsigned SCENE_SEED = 42;
+
 // construit une scene aleatoire avec spheres et lumieres
 Scene buildRandomScene(int width, int height, int num_spheres = 250) {
+	mtseed(SCENE_SEED);
 	Scene scene(width, height);
 	// Nombre de spheres (rend le probleme plus dur)
 	for (int i = 0; i < num_spheres; i++) {

@@ -24,7 +24,7 @@ public:
 	}
 
 	// submit a job to be executed by the pool
-	void submit (Job * job) { /*TODO*/}
+	bool submit (Job * job) { /*TODO*/ return false; }
 	
 	// initiate shutdown, wait for threads to finish
 	void stop() { }
